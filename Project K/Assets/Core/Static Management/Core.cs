@@ -5,20 +5,20 @@ using UnityEngine;
 
 namespace Core
 {
-    static class StageMechanics
+    public static class StageMechanics
     {
         //All Players
-        static MonoCore Mono;
-        static MonoCore.PlayerDB[] PlayerLibrary;
+        public static MonoCore Mono;
+        public static List<MonoCore.PlayerDB> PlayerLibrary = new List<MonoCore.PlayerDB>();
     }
 
 
 
 
 
-    static class AttackMechanics
+    public static class AttackMechanics
     {
-        static void Attack(MonoCore.PlayerDB _Player, MonoCore.PlayerDB _Target)
+        public static void Attack(MonoCore.PlayerDB _Player, MonoCore.PlayerDB _Target)
         {
             //Combo Parse
             int Weapon = _Player.Combo;
@@ -36,6 +36,7 @@ namespace Core
                 //if weapon blunt:
                     //DMG = ((TotalATK * ClassPhysDMG) * (1 + (ComboCount * 0.25))) * 0.25
 
+                int DMG = 20;
                 Damage(_Target, DMG);
 
             } else {
@@ -45,7 +46,7 @@ namespace Core
 
         static void Damage(MonoCore.PlayerDB _Target, int _Damage)
         {
-            Debug.Log($"Dealt {_Damage:.2f} Damage to player {_Target.Name}!");
+            Debug.Log($"Dealt {_Damage:D2} Damage to player {_Target.Name}!");
         }
     }
 

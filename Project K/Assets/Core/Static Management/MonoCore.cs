@@ -6,14 +6,16 @@ using Core;
 public class MonoCore : MonoBehaviour
 {
     #region DataBases
+        static GameObject Dummy;
+
         //Player Information
         public class PlayerDB
         {
             public string Name = "John Doe";
-            public Transform PT;
-            public int AttackType;
+            public Transform PT = Dummy.transform;
+            public int AttackType = 0;
             public List<int> WeaponLineup = new List<int>();
-            public int Combo;
+            public int Combo = 0;
             public MClock.PClock ComboCooldown = new MClock.PClock(1f);
             public MClock.PClock AttackCooldown = new MClock.PClock(.5f);
         }
@@ -23,10 +25,15 @@ public class MonoCore : MonoBehaviour
 
     void Start()
     {
+        Dummy = new GameObject();
+        for (int i = 0; i < 3; i++){
+            StageMechanics.PlayerLibrary.Add(new PlayerDB());
+        }
     }
 
     void Update()
     {
         MClock.Update();
+        AttackMechanics.Attack(StageMechanics.PlayerLibrary[0], StageMechanics.PlayerLibrary[1]);
     }
 }
