@@ -32,9 +32,9 @@ namespace Core
             if ((_Target.PT.position - _Player.PT.position).magnitude < 20 || _Player.AttackType == 0){
                 //Melee
                 //if weapon sharp:
-                    DMG = ((TotalATK * ClassPhysDMG) * (1 + (ComboCount * 0.25))) - EnemyPhysDef
+                    //DMG = ((TotalATK * ClassPhysDMG) * (1 + (ComboCount * 0.25))) - EnemyPhysDef
                 //if weapon blunt:
-                    DMG = ((TotalATK * ClassPhysDMG) * (1 + (ComboCount * 0.25))) * 0.25
+                    //DMG = ((TotalATK * ClassPhysDMG) * (1 + (ComboCount * 0.25))) * 0.25
 
                 Damage(_Target, DMG);
 
