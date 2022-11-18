@@ -6,12 +6,12 @@ using Core;
 public class MonoCore : MonoBehaviour
 {
     #region DataBases
-        static GameObject Dummy;
 
         //Player Information
         public class PlayerDB
         {
             public string Name = "John Doe";
+            public GameObject Dummy = new GameObject("Dummy");
             public Transform PT = Dummy.transform;
             public int AttackType = 0;
             public List<int> WeaponLineup = new List<int>();
