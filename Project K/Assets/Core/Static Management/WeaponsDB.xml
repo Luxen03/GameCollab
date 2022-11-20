@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<Weapons>
+    <Weapon no = "0">
+        <Name>WeaponName</Name>
+        <RangeType>Melee</RangeType>
+        <DamageType>Physical</DamageType>
+        <SubType>Sharp</SubType>
+        <Damage>20</Damage>
+        <Hands>2</Hands>
+    </Weapon>
+    <Weapon no = "1">
+        <Name>WeaponName</Name>
+        <RangeType>Melee</RangeType>
+        <DamageType>Physical</DamageType>
+        <SubType>Sharp</SubType>
+        <Damage>20</Damage>
+        <Hands>2</Hands>
+    </Weapon>
+    <Weapon no = "2">
+        <Name>WeaponName</Name>
+        <RangeType>Melee</RangeType>
+        <DamageType>Physical</DamageType>
+        <SubType>Sharp</SubType>
+        <Damage>20</Damage>
+        <Hands>2</Hands>
+    </Weapon>
+    <Weapon no = "3">
+        <Name>WeaponName</Name>
+        <RangeType>Melee</RangeType>
+        <DamageType>Physical</DamageType>
+        <SubType>Sharp</SubType>
+        <Damage>20</Damage>
+        <Hands>2</Hands>
+    </Weapon>
+    <Weapon no = "4">
+        <Name>WeaponName</Name>
+        <RangeType>Melee</RangeType>
+        <DamageType>Physical</DamageType>
+        <SubType>Sharp</SubType>
+        <Damage>20</Damage>
+        <Hands>2</Hands>
+    </Weapon>
+    <Weapon no = "4">
+        <Name>WeaponName</Name>
+        <RangeType>Melee</RangeType>
+        <DamageType>Physical</DamageType>
+        <SubType>Sharp</SubType>
+        <Damage>20</Damage>
+        <Hands>2</Hands>
+    </Weapon>
+    <Weapon no = "5">
+        <Name>WeaponName</Name>
+        <RangeType>Melee</RangeType>
+        <DamageType>Physical</DamageType>
+        <SubType>Sharp</SubType>
+        <Damage>20</Damage>
+        <Hands>2</Hands>
+    </Weapon>
+    <Weapon no = "6">
+        <Name>WeaponName</Name>
+        <RangeType>Melee</RangeType>
+        <DamageType>Physical</DamageType>
+        <SubType>Sharp</SubType>
+        <Damage>20</Damage>
+        <Hands>2</Hands>
+    </Weapon>
+    <Weapon no = "7">
+        <Name>WeaponName</Name>
+        <RangeType>Melee</RangeType>
+        <DamageType>Physical</DamageType>
+        <SubType>Sharp</SubType>
+        <Damage>20</Damage>
+        <Hands>2</Hands>
+    </Weapon>
+    <Weapon no = "8">
+        <Name>WeaponName</Name>
+        <RangeType>Melee</RangeType>
+        <DamageType>Physical</DamageType>
+        <SubType>Sharp</SubType>
+        <Damage>20</Damage>
+        <Hands>2</Hands>
+    </Weapon>
+</Weapons>

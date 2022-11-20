@@ -28,25 +28,45 @@ namespace Core
             //Total of all Loadout stats and buffs
 
 
-            //Attack Conditions
-            if ((_Target.PT.position - _Player.PT.position).magnitude < 20 || _Player.AttackType == 0){
-                //Melee
-                //if weapon sharp:
-                    //DMG = ((TotalATK * ClassPhysDMG) * (1 + (ComboCount * 0.25))) - EnemyPhysDef
-                //if weapon blunt:
-                    //DMG = ((TotalATK * ClassPhysDMG) * (1 + (ComboCount * 0.25))) * 0.25
+            //Damage Type Formula
+            //if physical
+                    //if weapon sharp:
+                        //DMG = ((TotalATK * ClassPhysDMG) * (1 + (ComboCount * 0.25))) - EnemyPhysDef
+                    //if weapon blunt:
+                        //DMG = ((TotalATK * ClassPhysDMG) * (1 + (ComboCount * 0.25))) * 0.25
+                //if magical
+                    //DMG = (TotalATK * ClassMagDMG) * (1 - EnemyMagDef)
 
+            //Attack Conditions
+            //if ((_Target.PT.position - _Player.PT.position).magnitude < 20 || _Player.AttackType == 0){
+            if ((_Target.PT.position - _Player.PT.position).magnitude < 20){
+                //Melee
                 int DMG = 20;
                 Damage(_Target, DMG);
 
             } else {
                 //Ranged
+                int DMG = 20;
+                Damage(_Target, DMG);
             }
         }
 
         static void Damage(MonoCore.PlayerDB _Target, int _Damage)
         {
-            Debug.Log($"Dealt {_Damage:D2} Damage to player {_Target.Name}!");
+            //already dead
+            if (_Target.HP == 0){
+                return;
+            }
+
+            _Target.HP -= _Damage;
+
+            //Death
+            if (_Target.HP < 1){
+                _Target.HP = 0;
+                Debug.Log($"Dealt {_Damage:D2} to player {_Target.Name} and then he Died!");
+                return;
+            }
+            Debug.Log($"Dealt {_Damage:D2} Damage to player {_Target.Name}! Remaining HP : {_Target.HP}");
         }
     }
 
@@ -62,11 +82,10 @@ namespace Core
             internal float Max;
             //Constructor
             public PClock(float _Max){
-                Debug.Log("Clock Made");
                 Max = _Max;
                 ClockLibrary.Add(this);
             }
-            ~PClock(){ Debug.Log("Clock Deleted"); }
+            //~PClock(){ Debug.Log("Clock Deleted"); }
 
             //methods
             public void Destroy(){ ClockLibrary.Remove(this); }
