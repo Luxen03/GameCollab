@@ -5,20 +5,69 @@ using UnityEngine;
 
 namespace Core
 {
+    #region Instances
+
+        //Player Information
+        public class PlayerDB
+        {
+            //Identification
+            public string Name = "John Doe";
+            public Transform PT;
+
+
+            //Loadout
+            public List<string> WeaponLineup = new List<string>();
+
+
+            //Hidden information
+            public int Combo = 0;
+            public int MaxHP = 100;
+            public int HP = 0;
+            public int MaxMP = 100;
+            public int MP = 0;
+
+
+            //Player Cooldowns
+            public MClock.PClock ComboCooldown = new MClock.PClock(1f);
+            public MClock.PClock AttackCooldown = new MClock.PClock(.5f);
+
+
+            public PlayerDB()
+            {
+                HP = MaxHP;
+                PT = new GameObject("Dummy").transform;
+            }
+        }
+
+        public class Weapon
+        {
+            public string Name;
+            public int[] Types = new int[3];
+            public int Damage;
+            public int Hands;
+            public Weapon(int WeaponNo)
+            {
+
+            }
+        }
+    #endregion
+    //Universal Information
     public static class StageMechanics
     {
-        //All Players
         public static MonoCore Mono;
-        public static List<MonoCore.PlayerDB> PlayerLibrary = new List<MonoCore.PlayerDB>();
+        //contains all weapons of all players
+        public static Dictionary<string, Weapon> WeaponsDictionary = new Dictionary<string, Weapon>();
+        //contains all players
+        public static List<PlayerDB> PlayerLibrary = new List<PlayerDB>();
     }
 
 
 
-
-
+    //How attacking is processed
     public static class AttackMechanics
     {
-        public static void Attack(MonoCore.PlayerDB _Player, MonoCore.PlayerDB _Target)
+        //parse damage type, play attack animation, dmg calculation
+        public static void Attack(PlayerDB _Player, PlayerDB _Target)
         {
             //Combo Parse
             int Weapon = _Player.Combo;
@@ -51,7 +100,8 @@ namespace Core
             }
         }
 
-        static void Damage(MonoCore.PlayerDB _Target, int _Damage)
+        //actual damage, play damaged calculation, check if dead
+        static void Damage(PlayerDB _Target, int _Damage)
         {
             //already dead
             if (_Target.HP == 0){
@@ -72,7 +122,7 @@ namespace Core
 
 
 
-
+    //class for managing clocks, timers, etc
     public static class MClock
     {
         internal static List<PClock> ClockLibrary = new List<PClock>();
