@@ -14,10 +14,8 @@ namespace Core
             public string Name = "John Doe";
             public Transform PT;
 
-
             //Loadout
             public List<string> WeaponLineup = new List<string>();
-
 
             //Hidden information
             public int Combo = 0;
@@ -26,16 +24,15 @@ namespace Core
             public int MaxMP = 100;
             public int MP = 0;
 
-
             //Player Cooldowns
             public MClock.PClock ComboCooldown = new MClock.PClock(1f);
             public MClock.PClock AttackCooldown = new MClock.PClock(.5f);
 
-
-            public PlayerDB()
+            public PlayerDB(string _Name, GameObject _Body)
             {
+                Name = _Name;
                 HP = MaxHP;
-                PT = new GameObject("Dummy").transform;
+                PT = _Body.transform;
             }
         }
 
@@ -61,7 +58,25 @@ namespace Core
         public static List<PlayerDB> PlayerLibrary = new List<PlayerDB>();
     }
 
+    public static class BotHubMechanics
+    {
+        public class Bot
+        {
+            public PlayerDB Player;
+            public BotMechanics Behaviour;
 
+            public Bot()
+            {
+                GameObject Body = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject);
+                Body.transform.position = new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
+                BotLibrary.Add(this);
+                StageMechanics.PlayerLibrary.Add(new PlayerDB("Bot" + BotLibrary.Count, Body));
+                Debug.Log("Made Bot" + BotLibrary.Count);
+            }
+        }
+
+        public static List<Bot> BotLibrary = new List<Bot>();
+    }
 
     //How attacking is processed
     public static class AttackMechanics
@@ -91,17 +106,17 @@ namespace Core
             if ((_Target.PT.position - _Player.PT.position).magnitude < 20){
                 //Melee
                 int DMG = 20;
-                Damage(_Target, DMG);
+                Damage(_Player, _Target, DMG);
 
             } else {
                 //Ranged
                 int DMG = 20;
-                Damage(_Target, DMG);
+                Damage(_Player, _Target, DMG);
             }
         }
 
         //actual damage, play damaged calculation, check if dead
-        static void Damage(PlayerDB _Target, int _Damage)
+        static void Damage(PlayerDB _Player, PlayerDB _Target, int _Damage)
         {
             //already dead
             if (_Target.HP == 0){
@@ -113,14 +128,12 @@ namespace Core
             //Death
             if (_Target.HP < 1){
                 _Target.HP = 0;
-                Debug.Log($"Dealt {_Damage:D2} to player {_Target.Name} and then he Died!");
+                Debug.Log($"{_Player.Name} killed {_Target.Name} with {_Damage:D2} damage!");
                 return;
             }
-            Debug.Log($"Dealt {_Damage:D2} Damage to player {_Target.Name}! Remaining HP : {_Target.HP}");
+            Debug.Log($"{_Player.Name} dealt {_Damage:D2} Damage to {_Target.Name}! Remaining HP : {_Target.HP}");
         }
     }
-
-
 
     //class for managing clocks, timers, etc
     public static class MClock

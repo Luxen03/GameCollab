@@ -2,6 +2,7 @@ using UnityEditor;
 
 public class Debugger
 {
+    
     [MenuItem("CustomDebugger/DeleteFile")]
     private static void Delete() { FileManager.DeleteFile(); }
 
