@@ -19,10 +19,14 @@ namespace Core
 
             //Hidden information
             public int Combo = 0;
-            public int MaxHP = 100;
-            public int HP = 0;
-            public int MaxMP = 100;
-            public int MP = 0;
+            public struct Bars
+            {
+                public int Current;
+                public int Max;
+            }
+            public Bars HP;
+            public Bars MP;
+            public Bars Stamina;
 
             //Player Cooldowns
             public MClock.PClock ComboCooldown = new MClock.PClock(1f);
@@ -31,7 +35,7 @@ namespace Core
             public PlayerDB(string _Name, GameObject _Body)
             {
                 Name = _Name;
-                HP = MaxHP;
+                HP.Current = HP.Max;
                 PT = _Body.transform;
             }
         }
@@ -119,19 +123,19 @@ namespace Core
         static void Damage(PlayerDB _Player, PlayerDB _Target, int _Damage)
         {
             //already dead
-            if (_Target.HP == 0){
+            if (_Target.HP.Current == 0){
                 return;
             }
 
-            _Target.HP -= _Damage;
+            _Target.HP.Current -= _Damage;
 
             //Death
-            if (_Target.HP < 1){
-                _Target.HP = 0;
+            if (_Target.HP.Current < 1){
+                _Target.HP.Current = 0;
                 Debug.Log($"{_Player.Name} killed {_Target.Name} with {_Damage:D2} damage!");
                 return;
             }
-            Debug.Log($"{_Player.Name} dealt {_Damage:D2} Damage to {_Target.Name}! Remaining HP : {_Target.HP}");
+            Debug.Log($"{_Player.Name} dealt {_Damage:D2} Damage to {_Target.Name}! Remaining HP : {_Target.HP.Current}");
         }
     }
 
