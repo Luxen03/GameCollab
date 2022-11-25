@@ -16,6 +16,7 @@ namespace Core
 
             //Loadout
             public List<string> WeaponLineup = new List<string>();
+            public List<string> Loadout = new List<string>();
 
             //Hidden information
             public int Combo = 0;
@@ -35,6 +36,7 @@ namespace Core
             public PlayerDB(string _Name, GameObject _Body)
             {
                 Name = _Name;
+                HP.Max = 100;
                 HP.Current = HP.Max;
                 PT = _Body.transform;
             }
@@ -71,10 +73,12 @@ namespace Core
 
             public Bot()
             {
-                GameObject Body = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject);
+                GameObject Body = GameObject.Instantiate(Resources.Load("Prefabs/Bot") as GameObject);
                 Body.transform.position = new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
                 BotLibrary.Add(this);
-                StageMechanics.PlayerLibrary.Add(new PlayerDB("Bot" + BotLibrary.Count, Body));
+                Body.name = "Bot" + BotLibrary.Count;
+                Player = new PlayerDB("Bot" + BotLibrary.Count, Body);
+                Body.GetComponent<BotMechanics>().StartUp(Player);
                 Debug.Log("Made Bot" + BotLibrary.Count);
             }
         }
@@ -124,6 +128,7 @@ namespace Core
         {
             //already dead
             if (_Target.HP.Current == 0){
+                Debug.Log("Stop it, it's already dead");
                 return;
             }
 
@@ -139,7 +144,7 @@ namespace Core
         }
     }
 
-    //class for managing clocks, timers, etc
+    //class for managing clocks, timers, etc; P.S do not change this
     public static class MClock
     {
         internal static List<PClock> ClockLibrary = new List<PClock>();

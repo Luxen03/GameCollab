@@ -12,12 +12,14 @@ public class MonoCore : MonoBehaviour
 
         #endregion
         Application.wantsToQuit += AppQuit;
+
+        GameObject Body = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject);
+        Body.name = "Player";
     }
 
     void Update()
     {
         MClock.Update();
-        AttackMechanics.Attack(StageMechanics.PlayerLibrary[0], StageMechanics.PlayerLibrary[1]);
     }
 
     public bool AppQuit()
