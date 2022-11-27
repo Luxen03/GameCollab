@@ -8,18 +8,26 @@ public class BaseMechanics : MonoBehaviour
     //references
     public Animator Animator;
     public Rigidbody Body;
+    public Vector3 LookingAt;
+    public RaycastHit Target;
+    public Transform GunPoint;
 
     void Start()
     {
         Animator = transform.GetComponent<Animator>();
         Body = transform.GetComponent<Rigidbody>();
+        GunPoint = gameObject.transform.GetChild(0);
     }
 
-    public void Shoot(RaycastHit hit)
+    void Update()
+    {
+        LookingAt = Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(.5f, .5f, 0)), out Target, 100) ? Target.point : GunPoint.position + new Vector3(0, 0, 0);
+    }
+
+    public void Shoot()
     {
         //shooting
-        Vector3 GunPoint = gameObject.transform.GetChild(0).position;
-        if (Physics.Raycast(GunPoint, hit.point - GunPoint, out hit, 100, ~8))
+        if (Physics.Raycast(GunPoint.position, LookingAt - GunPoint.position, out RaycastHit hit, 100, 64))
             AttackMechanics.Attack(Player, hit.transform.GetComponent<BaseMechanics>().Player);
     }
 }

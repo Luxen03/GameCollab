@@ -143,7 +143,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1859658951544291786}
+  - {fileID: 744057456870964424}
   m_Father: {fileID: 740871932700754516}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -186,11 +186,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4435943755961355858}
   m_LocalRotation: {x: 0.037254173, y: -0, z: -0, w: 0.99930584}
-  m_LocalPosition: {x: 0, y: 2.92, z: -3.81}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6106356987048397985}
+  m_Father: {fileID: 744057456870964424}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 4.27, y: 0, z: 0}
 --- !u!20 &7672403971286289152
@@ -252,6 +252,38 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4435943755961355858}
   m_Enabled: 1
+--- !u!1 &6036636014902101796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 744057456870964424}
+  m_Layer: 3
+  m_Name: Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &744057456870964424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036636014902101796}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1859658951544291786}
+  m_Father: {fileID: 6106356987048397985}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6650180880143202403
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,10 +400,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 602632530990709942}
   - {fileID: 4476513429911915914}
   - {fileID: 1283790953526999354}
   - {fileID: 6106356987048397985}
-  - {fileID: 602632530990709942}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -450,6 +482,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animator: {fileID: 0}
   Body: {fileID: 0}
+  LookingAt: {x: 0, y: 0, z: 0}
+  GunPoint: {fileID: 0}
 --- !u!136 &6911998934717936290
 CapsuleCollider:
   m_ObjectHideFlags: 0

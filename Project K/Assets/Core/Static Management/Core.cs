@@ -40,6 +40,11 @@ namespace Core
                 HP.Current = HP.Max;
                 PT = _Body.transform;
             }
+
+            public void PermaDie()
+            {
+                GameObject.Destroy(PT.gameObject);
+            }
         }
 
         public class Weapon
@@ -138,6 +143,7 @@ namespace Core
             if (_Target.HP.Current < 1){
                 _Target.HP.Current = 0;
                 Debug.Log($"{_Player.Name} killed {_Target.Name} with {_Damage:D2} damage!");
+                _Target.PermaDie();
                 return;
             }
             Debug.Log($"{_Player.Name} dealt {_Damage:D2} Damage to {_Target.Name}! Remaining HP : {_Target.HP.Current}");

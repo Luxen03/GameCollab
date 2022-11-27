@@ -31,8 +31,10 @@ public class PlayerMechanics : MonoBehaviour
         Movement_Right = Input.GetAxis("Horizontal") * Time.deltaTime * Speed;
         Rotation_X = Input.GetAxis("Mouse X") * Sensitivity;
 
-        RaycastHit hit;
-        if (Input.GetKeyDown(KeyCode.Mouse0) && Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f,0.5f,0f)), out hit, 100, ~8)) Base.Shoot(hit);
+        Debug.DrawRay(Base.GunPoint.position, transform.forward, Color.red);
+
+        //Player shoots
+        if (Input.GetKeyDown(KeyCode.Mouse0)) Base.Shoot();
     }
     void FixedUpdate()
     {
