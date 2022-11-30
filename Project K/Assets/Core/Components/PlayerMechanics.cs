@@ -31,7 +31,6 @@ public class PlayerMechanics : MonoBehaviour
         Movement_Right = Input.GetAxis("Horizontal") * Time.deltaTime * Speed;
         Rotation_X = Input.GetAxis("Mouse X") * Sensitivity;
 
-        Debug.DrawRay(Base.GunPoint.position, transform.forward, Color.red);
 
         //Player shoots
         if (Input.GetKeyDown(KeyCode.Mouse0)) Base.Shoot();

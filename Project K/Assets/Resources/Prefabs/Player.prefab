@@ -185,14 +185,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4435943755961355858}
-  m_LocalRotation: {x: 0.037254173, y: -0, z: -0, w: 0.99930584}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 744057456870964424}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 4.27, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &7672403971286289152
 Camera:
   m_ObjectHideFlags: 0
@@ -482,7 +482,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animator: {fileID: 0}
   Body: {fileID: 0}
-  LookingAt: {x: 0, y: 0, z: 0}
   GunPoint: {fileID: 0}
 --- !u!136 &6911998934717936290
 CapsuleCollider:

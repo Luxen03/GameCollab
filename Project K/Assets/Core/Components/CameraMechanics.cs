@@ -31,28 +31,39 @@ public class CameraMechanics : MonoBehaviour
         Scoping = Input.GetKey(KeyCode.Mouse1);
         if (Input.GetKeyDown(KeyCode.Mouse1)) PlayerCamera.GetComponent<Camera>().fieldOfView = 17;
         if (Input.GetKeyUp(KeyCode.Mouse1)) PlayerCamera.GetComponent<Camera>().fieldOfView = 60;
+
+        //Lookingat
+        Ray Pointer = new Ray(Holder.position, Holder.forward);
+        Vector3 LookingAt = Physics.Raycast(Pointer, out RaycastHit Target, 100, ~8) ? Target.point : GunPoint.position + new Vector3(0, 0, 0);
+
+        Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, 0)), out Target, 100, ~8);
+        Debug.Log(LookingAt + ":" + Target.point + " = " + (LookingAt - Target.point));
+
+        //Debug
+        Debug.DrawRay(Pointer.origin, Pointer.direction * 100, Color.red);
+        Pointer = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, 0));
+        Debug.DrawRay(Pointer.origin, Pointer.direction * 100, Color.red);
+
+        //Pivot rotation
+        transform.localRotation = Quaternion.Euler(-Rotation_Y, Rotation_X, 0);
+
+        //Camera rotation and position
+        if (!Scoping){
+            //When Not Scoping
+            PlayerCamera.localPosition = Vector3.zero;
+            PlayerCamera.localEulerAngles = Vector3.zero;
+        } else {
+            //When Scoping
+            PlayerCamera.position = GunPoint.position;
+            PlayerCamera.LookAt(LookingAt);
+        }
     }
 
     void FixedUpdate()
     {
-        //walls must be layer 8
+        //Wall Detection
         if (Physics.Raycast(transform.position, Holder.position - transform.position, out RaycastHit hit, 5.21f, ~8)) 
             Holder.position = Vector3.Lerp(transform.position, hit.point, .9f);
-        else
-            Holder.localPosition = new Vector3(.7f, 1.59f, -4.97f);
-        Quaternion Rotation = Quaternion.Euler(-Rotation_Y, Rotation_X, 0);
-        //if scoping
-        if (!Scoping){
-            //normal
-            transform.localRotation = Rotation;
-            PlayerCamera.localPosition = Vector3.zero;
-            PlayerCamera.localEulerAngles = new Vector3(4.27f, 0, 0);
-        } else {
-            //look at where its supposed to look at
-            Vector3 LookingAt = !Physics.Raycast(Holder.position, Rotation * transform.forward, out hit, 100, ~8) ? hit.point : Holder.TransformPoint(new Vector3(0, 0, 100));
-            Debug.Log(LookingAt);
-            PlayerCamera.position = GunPoint.position;
-            PlayerCamera.LookAt(LookingAt);
-        }
+        else Holder.localPosition = new Vector3(.7f, 1.59f, -4.97f);
     }
 }
